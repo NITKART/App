@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "848658005362",
+    "firebase_url": "https://nitkart-21dca.firebaseio.com",
+    "project_id": "nitkart-21dca",
+    "storage_bucket": "nitkart-21dca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848658005362:android:077336c6b4ebac06",
+        "android_client_info": {
+          "package_name": "com.example.android.nitkart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848658005362-57tbomg9k7ttv4156q811vlncv4kf5e0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.nitkart",
+            "certificate_hash": "fd2e241a104b8618239905b2d384e75328fe9c32"
+          }
+        },
+        {
+          "client_id": "848658005362-sv0g1evvfa79fqbbcsckcglvhh0s9cvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB19_7vubPingw6P04mP02zVEQm076p5Hc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848658005362-sv0g1evvfa79fqbbcsckcglvhh0s9cvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
