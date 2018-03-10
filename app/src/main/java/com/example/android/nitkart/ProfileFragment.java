@@ -26,6 +26,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -33,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -148,52 +152,42 @@ public class ProfileFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.POST,
-                MainActivity.domain + "/user/getProducts/",
-                null,
-                new Response.Listener<JSONArray>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.domain + "/user/getProducts/",
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            Toast.makeText(context, response.toString(), Toast.LENGTH_LONG).show();
-                            // Loop through the array elements
-                            for (int i = 0; i < response.length(); i++) {
-                                // Get current json object
-                                JSONObject product = response.getJSONObject(i);
-                                String url = product.getString("image");
-                                String product_name = product.getString("product_name");
-                                String product_price = product.getString("product_price");
-                                images.add(url);
-                                name.add(product_name);
-                                price.add(product_price);
-                            }
-                            prepareAlbums();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                    public void onResponse(String response) {
+                        Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                        Log.d("Response", response);
+                        GsonBuilder builder = new GsonBuilder();
+                        Gson mGson = builder.create();
+                        List<Product> posts = new ArrayList<Product>();
+                        posts = Arrays.asList(mGson.fromJson(response, Product[].class));
+                        for(Product post : posts)
+                        {
+                            images.add(post.getImage());
+                            name.add(post.getName());
+                            price.add(post.getPrice());
                         }
+                        prepareAlbums();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-
-//                        Intent intent = new Intent(getContext(), NoInternetActivity.class);
-//                        startActivity(intent);
+                        //this is causing an error
+//                            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                        Log.d("Error.Response", error.toString());
                     }
                 }
         ) {
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("seller_email", "suyashghuge@gmail.com");
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("seller_email", "dhvanilhparikh@gmail.com");
                 return params;
             }
-
         };
-        SingletonRequestQueue.getInstance(context).addToRequestQueue(jsonArrayRequest);
+        SingletonRequestQueue.getInstance(getActivity()).addToRequestQueue(stringRequest);
         //below line shows error
 //        Log.d("Shared pref se nikala", sharedPreferences.getString(emailId, null));
 
