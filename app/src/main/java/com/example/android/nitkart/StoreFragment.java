@@ -99,8 +99,8 @@ public class StoreFragment extends Fragment {
         context = getContext();
 
         View view = inflater.inflate(R.layout.fragment_store, container, false);
-        recyclerView =  view.findViewById(R.id.recycler_view);
-        swipeRefreshLayout=view.findViewById(R.id.swipeRefresh);
+        recyclerView = view.findViewById(R.id.recycler_view);
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
 
         albumList = new ArrayList<>();
         images = new ArrayList<>();
@@ -255,7 +255,7 @@ public class StoreFragment extends Fragment {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-    private void refreshFragment(){
+    private void refreshFragment() {
 
 
         albumList = new ArrayList<>();
@@ -309,7 +309,6 @@ public class StoreFragment extends Fragment {
         );
         SingletonRequestQueue.getInstance(context).addToRequestQueue(jsonArrayRequest);
     }
-
 
 
 }
