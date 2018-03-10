@@ -112,7 +112,6 @@
                 android:drawableLeft="@drawable/block"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
-                android:inputType="phone"
                 android:hint="@string/seller_block"
                 android:padding="10dp"
                 android:singleLine="true"
@@ -132,7 +131,6 @@
                 android:drawableLeft="@drawable/room"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
-                android:inputType="phone"
                 android:hint="@string/seller_room"
                 android:padding="10dp"
                 android:singleLine="true"
@@ -155,6 +153,7 @@
                 android:hint="@string/time_period"
                 android:padding="10dp"
                 android:singleLine="true"
+                android:inputType="phone"
                 android:textSize="16sp" />
 
             <View
@@ -172,6 +171,7 @@
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
                 android:hint="@string/product_price"
+                android:inputType="phone"
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textSize="16sp" />

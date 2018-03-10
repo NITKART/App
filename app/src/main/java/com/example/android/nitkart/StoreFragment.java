@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,14 +52,14 @@ public class StoreFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     ListView listView;
 
+    Context context;
     private RecyclerView recyclerView;
     private AlbumsAdapter adapter;
     private List<Album> albumList;
-    Context context;
-
     ArrayList<String> images;
     ArrayList<String> name;
     ArrayList<String> price;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public StoreFragment() {
         // Required empty public constructor
@@ -99,6 +100,7 @@ public class StoreFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_store, container, false);
         recyclerView =  view.findViewById(R.id.recycler_view);
+        swipeRefreshLayout=view.findViewById(R.id.swipeRefresh);
 
         albumList = new ArrayList<>();
         images = new ArrayList<>();
@@ -150,6 +152,12 @@ public class StoreFragment extends Fragment {
                 }
         );
         SingletonRequestQueue.getInstance(context).addToRequestQueue(jsonArrayRequest);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshFragment();
+            }
+        });
         return view;
     }
 
@@ -247,6 +255,62 @@ public class StoreFragment extends Fragment {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
+    private void refreshFragment(){
+
+
+        albumList = new ArrayList<>();
+        images = new ArrayList<>();
+        name = new ArrayList<>();
+        price = new ArrayList<>();
+        adapter = new AlbumsAdapter(getContext(), albumList);
+
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                MainActivity.domain + "/user/getProducts/",
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            // Loop through the array elements
+                            for (int i = 0; i < response.length(); i++) {
+                                // Get current json object
+                                JSONObject product = response.getJSONObject(i);
+                                String url = product.getString("image");
+                                String product_name = product.getString("product_name");
+                                String product_price = product.getString("product_price");
+                                images.add(url);
+                                name.add(product_name);
+                                price.add(product_price);
+                            }
+                            prepareAlbums();
+//                            Toast.makeText(context, response.toString(), Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+
+//                        Intent intent = new Intent(getContext(), NoInternetActivity.class);
+//                        startActivity(intent);
+                    }
+                }
+        );
+        SingletonRequestQueue.getInstance(context).addToRequestQueue(jsonArrayRequest);
+    }
+
 
 
 }

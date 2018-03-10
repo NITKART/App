@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -24,6 +26,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +36,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -59,6 +64,9 @@ public class ProfileFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     Button signOut;
+    TextView userName;
+    TextView userEmail;
+    CircleImageView userPhoto;
 
     ArrayList<String> images;
     ArrayList<String> name;
@@ -114,6 +122,15 @@ public class ProfileFragment extends Fragment {
         name = new ArrayList<>();
         price = new ArrayList<>();
         adapter = new AlbumsAdapter(getContext(), albumList);
+        userName=view.findViewById(R.id.userName);
+        userEmail=view.findViewById(R.id.userEmail);
+        userPhoto=view.findViewById(R.id.profile_image);
+//        userPhoto.setImageDrawable(R);
+        Log.w("PHOTO::::::::::::",sharedPreferences.getString("photo_url","custom"));
+//        userPhoto.setImageURI(Uri.parse(sharedPreferences.getString("photo_url","custom")));
+        Picasso.with(getContext()).load(sharedPreferences.getString("photo_url","custom")).into(userPhoto);
+        userName.setText(sharedPreferences.getString("username","Name"));
+        userEmail.setText(sharedPreferences.getString("email_id","email"));
 
         // LogOut Button
         signOut = view.findViewById(R.id.signOut);
@@ -177,7 +194,8 @@ public class ProfileFragment extends Fragment {
 
         };
         SingletonRequestQueue.getInstance(context).addToRequestQueue(jsonArrayRequest);
-        Log.d("Shared pref se nikala", sharedPreferences.getString(emailId, null));
+        //below line shows error
+//        Log.d("Shared pref se nikala", sharedPreferences.getString(emailId, null));
 
 
         // Inflate the layout for this fragment

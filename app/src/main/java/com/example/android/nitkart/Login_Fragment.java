@@ -71,6 +71,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     String phoneNumber = "phone_number";
     SharedPreferences sharedPreferences;
 
+
     //Google login related
     static GoogleSignInClient mGoogleSignInClient;
     private int RC_SIGN_IN = 1;
@@ -309,7 +310,6 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         if (account != null) {
             Intent intent = new Intent(getActivity(), BottomNavigation.class);
             startActivity(intent);
-            getActivity().finish();
             Log.d("llllllllllllll", "inside if");
             StringRequest stringRequest = new StringRequest(Request.Method.POST, googleEmailUrl,
                     new Response.Listener<String>() {
@@ -318,24 +318,29 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                             Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
                             Log.d("Response", response);
                             if (response.charAt(2) == 'S') {
-                                Log.d("llllllllllllll", "inside if iffffffff");
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                Log.d("Nameeeeeeeeeeeeeeeeeee", account.getDisplayName());
-                                Log.d("Nameeeeeeeeeeee", account.getGivenName());
                                 editor.putString("username", account.getDisplayName());
                                 editor.putString("password", null);
                                 editor.putString("email_id", account.getEmail());
                                 editor.putString("phone_number", null);
+                                String url;
+                                if (account.getPhotoUrl() != null) {
+                                    url = account.getPhotoUrl().toString();
+                                    editor.putString("photo_url", url);
+                                }else{
+                                    editor.putString("photo_url", "https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-9/16196015_10154888128487744_6901111466535510271_n.png?oh=07b0d5bb946821893d0b6424746bc4da&oe=5B41BEE9");
+                                }
                                 editor.commit();
-                                Toast.makeText(getActivity(), "inside", Toast.LENGTH_SHORT)
-                                        .show();
+//                                Toast.makeText(getActivity(), "inside", Toast.LENGTH_SHORT)
+//                                        .show();
                             }
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
+                            //this is causing an error
+//                            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
                             Log.d("Error.Response", error.toString());
                         }
                     }
@@ -351,6 +356,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                 }
             };
             SingletonRequestQueue.getInstance(getActivity()).addToRequestQueue(stringRequest);
+            getActivity().finish();
+
         }
     }
 

@@ -9,7 +9,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private static FragmentManager fragmentManager;
 
-    public static String domain = "http://10.50.22.146:8000";
+    public static String domain = "http://192.168.137.139:8000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

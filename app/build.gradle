@@ -54,6 +54,11 @@ dependencies {
     //For GIF
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
 
+    compile 'com.android.support:support-v4:26.3.1'
+
+
+
+
 }
 
 

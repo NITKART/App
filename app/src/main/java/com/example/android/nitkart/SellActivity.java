@@ -79,6 +79,7 @@ public class SellActivity extends AppCompatActivity implements Imageutils.ImageA
         productPrice = findViewById(R.id.price);
         sharedPreferences = getApplicationContext().getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         sellerEmail.setText(sharedPreferences.getString("email_id", null));
+//        sellerEmail.setFocusable(false);
         sellerName.setText(sharedPreferences.getString("username", null));
         sellerPhone.setText(sharedPreferences.getString("phone_number", null));
 
@@ -176,7 +177,7 @@ public class SellActivity extends AppCompatActivity implements Imageutils.ImageA
             sellerEmail.startAnimation(shakeAnimation);
         } else {
             progressBar.setCancelable(false);//you can cancel it by pressing back button
-            progressBar.setMessage("Posting Ad ...");
+            progressBar.setMessage("Posting Ad...");
             progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressBar.show();
 
