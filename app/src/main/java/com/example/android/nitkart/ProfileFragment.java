@@ -130,9 +130,10 @@ public class ProfileFragment extends Fragment {
         userEmail=view.findViewById(R.id.userEmail);
         userPhoto=view.findViewById(R.id.profile_image);
 //        userPhoto.setImageDrawable(R);
+        String deafultPic="https://www.1pcom.net/img/loginhead.jpg";
         Log.w("PHOTO::::::::::::",sharedPreferences.getString("photo_url","custom"));
 //        userPhoto.setImageURI(Uri.parse(sharedPreferences.getString("photo_url","custom")));
-        Picasso.with(getContext()).load("https://lh6.googleusercontent.com/-Zcs28P-JYlk/AAAAAAAAAAI/AAAAAAAAB3s/5hzyrg7Ys80/photo.jpg").into(userPhoto);
+        Picasso.with(getContext()).load(sharedPreferences.getString("photo_url",deafultPic)).into(userPhoto);
         userName.setText(sharedPreferences.getString("username","Name"));
         userEmail.setText(sharedPreferences.getString("email_id","email"));
 
@@ -183,7 +184,7 @@ public class ProfileFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("seller_email", "dhvanilhparikh@gmail.com");
+                params.put("seller_email", sharedPreferences.getString("email_id","null"));
                 return params;
             }
         };
