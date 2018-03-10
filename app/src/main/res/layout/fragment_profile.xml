@@ -11,62 +11,59 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gradient"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:padding="15dp">
 
-        <RelativeLayout
-            android:id="@+id/logoLayout"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:padding="3dp">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:src="@drawable/ic_launcher_background" />
+        </LinearLayout>
 
-
-        </RelativeLayout>
-
-
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:padding="5dp"
-            android:textSize="28dp"
-            tools:ignore="InvalidId" />
-
-        <TextView
-            android:id="@+id/userEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingBottom="5dp"
-            android:textSize="16sp"
-            tools:ignore="InvalidId" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:gravity="center">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="fill_vertical"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-            <Button
-                android:id="@+id/signOut"
+            <TextView
+                android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/mybutton"
-                android:padding="15dp"
-                android:text="Log Out" />
+                android:textSize="28dp"
+                tools:ignore="InvalidId" />
+
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                tools:ignore="InvalidId" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/signOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/mybutton"
+                    android:padding="15dp"
+                    android:text="Log Out" />
+            </LinearLayout>
         </LinearLayout>
+
+
     </LinearLayout>
 
 

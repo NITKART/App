@@ -128,7 +128,7 @@ public class ProfileFragment extends Fragment {
 //        userPhoto.setImageDrawable(R);
         Log.w("PHOTO::::::::::::",sharedPreferences.getString("photo_url","custom"));
 //        userPhoto.setImageURI(Uri.parse(sharedPreferences.getString("photo_url","custom")));
-        Picasso.with(getContext()).load(sharedPreferences.getString("photo_url","custom")).into(userPhoto);
+        Picasso.with(getContext()).load("https://lh6.googleusercontent.com/-Zcs28P-JYlk/AAAAAAAAAAI/AAAAAAAAB3s/5hzyrg7Ys80/photo.jpg").into(userPhoto);
         userName.setText(sharedPreferences.getString("username","Name"));
         userEmail.setText(sharedPreferences.getString("email_id","email"));
 
