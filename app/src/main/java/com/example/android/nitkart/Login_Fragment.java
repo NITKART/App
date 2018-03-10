@@ -112,12 +112,19 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
         updateUI(account);
 
-//        if(sharedPreferences.getString(isLogged, null).equals("1"))
-//        {
-//            Intent intent = new Intent(getActivity(), BottomNavigation.class);
-//            startActivity(intent);
-//            getActivity().finish();
-//        }
+        try
+        {
+            if(sharedPreferences.getString(isLogged, null).equals("1"))
+            {
+                Intent intent = new Intent(getActivity(), BottomNavigation.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        }
+        catch(Exception e)
+        {
+            Log.v("Exception : ", e.toString());
+        }
 
         return view;
     }
