@@ -145,7 +145,6 @@ public class StoreFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-
 //                        Intent intent = new Intent(getContext(), NoInternetActivity.class);
 //                        startActivity(intent);
                     }
