@@ -24,7 +24,7 @@ public class ProductDetails extends AppCompatActivity {
         productPrice = (TextView) findViewById(R.id.product_price);
 
         Album album = (Album) getIntent().getSerializableExtra("Album");
-        Picasso.with(this).load(album.getUrl()).into(imageView);
+        Picasso.with(this).load(MainActivity.domain + album.getUrl()).into(imageView);
         producName.setText(album.getName());
         productPrice.setText(album.getPrice());
     }
