@@ -205,7 +205,6 @@ public class StoreFragment extends Fragment {
             Album a = new Album(name.get(i), price.get(i), images.get(i));
             albumList.add(a);
         }
-
         adapter.notifyDataSetChanged();
     }
 
