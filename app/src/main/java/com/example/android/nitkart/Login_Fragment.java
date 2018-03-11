@@ -332,7 +332,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
                             Log.d("Response", response);
                             if (response.charAt(2) == 'S') {
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
