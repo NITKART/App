@@ -1,9 +1,11 @@
 package com.example.android.nitkart;
 
+import java.io.Serializable;
+
 /**
  * Created by Lincoln on 18/05/16.
  */
-public class Album {
+public class Album implements Serializable {
     private String name;
     private String price;
     private String url;
