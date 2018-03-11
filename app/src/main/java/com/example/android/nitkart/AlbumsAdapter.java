@@ -67,7 +67,6 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
                 //implement onClick
                 System.out.println("Clicked");
                 Intent intent = new Intent(v.getContext(), ProductDetails.class);
-                intent.putExtra("Album", album);
                 v.getContext().startActivity(intent);
                 Toast.makeText(v.getContext(), album.getUrl(), Toast.LENGTH_LONG).show();
             }
@@ -77,7 +76,6 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ProductDetails.class);
-                intent.putExtra("Album", album);
                 v.getContext().startActivity(intent);
                 Toast.makeText(v.getContext(), album.getUrl(), Toast.LENGTH_LONG).show();
             }
