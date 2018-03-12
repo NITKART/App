@@ -52,7 +52,7 @@ public class SellActivity extends AppCompatActivity implements Imageutils.ImageA
     private static LinearLayout infoFill;
     private static Animation shakeAnimation;
     SharedPreferences sharedPreferences;
-    String myPreferences = "myPreferences";
+    String myPreferences = "MY_PREFERENCES";
     String emailId = "email_id";
 
 

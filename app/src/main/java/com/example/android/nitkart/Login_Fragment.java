@@ -59,17 +59,16 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     private static LinearLayout loginLayout;
     private static Animation shakeAnimation;
     private static FragmentManager fragmentManager;
-    String domain = MainActivity.domain;
+    String SERVER_DOMAIN = MainActivity.domain;
     private ProgressDialog mProgress;
-    String loginUrl = domain + "/user/login/";
-    String registerUrl = domain + "/user/register/";
-    String testUrl = domain + "/user";
-    String googleEmailUrl = domain + "/user/email_id/";
-    String myPreferences = "myPreferences";
-    String emailId = "email_id";
-    String passWord = "password";
-    String isLogged = "isLogged";
-    String phoneNumber = "phone_number";
+    String LOGIN_URL = SERVER_DOMAIN + "/user/login/";
+    String REGISTERED_URL = SERVER_DOMAIN + "/user/register/";
+    String GOOGLE_EMAIL_URL = SERVER_DOMAIN + "/user/email_id/";
+    String MY_PREFERENCES = "MY_PREFERENCES";
+    String EMAIL_ID = "email_id";
+    String PASSWORD = "password";
+    String IS_LOGGED = "IS_LOGGED";
+    String PHONE_NUMBER = "phone_number";
     SharedPreferences sharedPreferences;
 
 
@@ -84,14 +83,14 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        sharedPreferences = this.getActivity().getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+        sharedPreferences = this.getActivity().getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
         view = inflater.inflate(R.layout.activity_login, container, false);
         initViews();
         setListeners();
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
+                .requestProfile()
                 .build();
 
         // Build a GoogleSignInClient with the options specified by gso.
@@ -112,20 +111,12 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
         updateUI(account);
 
-        try
-        {
-            if(sharedPreferences.getString(isLogged, null).equals("1"))
-            {
-                Intent intent = new Intent(getActivity(), BottomNavigation.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        }
-        catch(Exception e)
-        {
-            Log.v("Exception : ", e.toString());
-        }
 
+        if (sharedPreferences.getString(IS_LOGGED, "0").equals("1")) {
+            Intent intent = new Intent(getActivity(), BottomNavigation.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
         return view;
     }
 
@@ -134,18 +125,16 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     private void initViews() {
         fragmentManager = getActivity().getSupportFragmentManager();
 
-        emailid = (EditText) view.findViewById(R.id.login_emailid);
-        password = (EditText) view.findViewById(R.id.login_password);
-        loginButton = (Button) view.findViewById(R.id.loginBtn);
-        forgotPassword = (TextView) view.findViewById(R.id.forgot_password);
-        signUp = (TextView) view.findViewById(R.id.createAccount);
-        show_hide_password = (CheckBox) view
-                .findViewById(R.id.show_hide_password);
-        loginLayout = (LinearLayout) view.findViewById(R.id.login_layout);
+        emailid = view.findViewById(R.id.login_emailid);
+        password = view.findViewById(R.id.login_password);
+        loginButton = view.findViewById(R.id.loginBtn);
+        forgotPassword = view.findViewById(R.id.forgot_password);
+        signUp = view.findViewById(R.id.createAccount);
+        show_hide_password = view.findViewById(R.id.show_hide_password);
+        loginLayout = view.findViewById(R.id.login_layout);
 
         // Load ShakeAnimation
-        shakeAnimation = AnimationUtils.loadAnimation(getActivity(),
-                R.anim.shake);
+        shakeAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
 
         // Setting text selector over textviews
         @SuppressLint("ResourceType") XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
@@ -157,6 +146,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
             show_hide_password.setTextColor(csl);
             signUp.setTextColor(csl);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -248,7 +238,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                     .show();
 
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, loginUrl,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -256,9 +246,9 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                             Log.d("Response", response);
                             if (response.charAt(2) == 'S') {
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(emailId, getEmailId);
-                                editor.putString(passWord, getPassword);
-                                editor.putString(isLogged, "1");
+                                editor.putString(EMAIL_ID, getEmailId);
+                                editor.putString(PASSWORD, getPassword);
+                                editor.putString(IS_LOGGED, "1");
                                 editor.commit();
                                 Intent intent = new Intent(getActivity(), BottomNavigation.class);
                                 startActivity(intent);
@@ -327,8 +317,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         if (account != null) {
             Intent intent = new Intent(getActivity(), BottomNavigation.class);
             startActivity(intent);
-            Log.d("llllllllllllll", "inside if");
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, googleEmailUrl,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, GOOGLE_EMAIL_URL,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -340,12 +329,12 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                                 editor.putString("password", null);
                                 editor.putString("email_id", account.getEmail());
                                 editor.putString("phone_number", null);
-                                editor.putString(isLogged, "1");
+                                editor.putString(IS_LOGGED, "1");
                                 String url;
                                 if (account.getPhotoUrl() != null) {
                                     url = account.getPhotoUrl().toString();
                                     editor.putString("photo_url", url);
-                                }else{
+                                } else {
                                     editor.putString("photo_url", "https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-9/16196015_10154888128487744_6901111466535510271_n.png?oh=07b0d5bb946821893d0b6424746bc4da&oe=5B41BEE9");
                                 }
                                 editor.commit();

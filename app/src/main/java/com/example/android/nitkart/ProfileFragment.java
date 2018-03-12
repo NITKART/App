@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment {
     ArrayList<String> name;
     ArrayList<String> price;
     SharedPreferences sharedPreferences;
-    String myPreferences = "myPreferences";
+    String myPreferences = "MY_PREFERENCES";
     String emailId = "email_id";
 
 
@@ -190,7 +190,7 @@ public class ProfileFragment extends Fragment {
         };
         SingletonRequestQueue.getInstance(getActivity()).addToRequestQueue(stringRequest);
         //below line shows error
-//        Log.d("Shared pref se nikala", sharedPreferences.getString(emailId, null));
+//        Log.d("Shared pref se nikala", sharedPreferences.getString(EMAIL_ID, null));
 
 
         // Inflate the layout for this fragment
@@ -301,7 +301,7 @@ public class ProfileFragment extends Fragment {
 
     private void signOut() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("isLogged", "0");
+        editor.putString("IS_LOGGED", "0");
         editor.apply();
         Login_Fragment.mGoogleSignInClient.signOut();
         Intent intent = new Intent(getActivity(), MainActivity.class);

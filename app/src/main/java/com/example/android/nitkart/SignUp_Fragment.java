@@ -45,7 +45,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
     String registerUrl = domain + "/user/register/";
     String testUrl = domain + "/user";
     String googleEmailUrl = domain + "/user/email_id/";
-    String myPreferences = "myPreferences";
+    String myPreferences = "MY_PREFERENCES";
     String passWord = "password";
     String phoneNumber = "phone_number";
     SharedPreferences sharedPreferences;

@@ -8,8 +8,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static FragmentManager fragmentManager;
-
-    public static String domain = "http://10.50.20.162:8000";
+    //DO NOT ADD A '/' AT THE END below
+    public static String domain = "http://10.50.17.166:8000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
                 .replace(R.id.frameContainer, new Login_Fragment(),
                         Utils.Login_Fragment).commit();
+        
     }
 
     @Override
