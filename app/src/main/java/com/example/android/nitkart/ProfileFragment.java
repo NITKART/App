@@ -171,7 +171,7 @@ public class ProfileFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
                         Log.d("Response", response);
                         GsonBuilder builder = new GsonBuilder();
                         Gson mGson = builder.create();
@@ -206,6 +206,7 @@ public class ProfileFragment extends Fragment {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("seller_email", sharedPreferences.getString("email_id","null"));
+                params.put("seller_email", "dhvanilhparikh@gmail.com");
                 return params;
             }
         };

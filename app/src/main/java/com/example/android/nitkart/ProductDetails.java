@@ -22,6 +22,14 @@ public class ProductDetails extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.image);
         producName = (TextView) findViewById(R.id.product_name);
         productPrice = (TextView) findViewById(R.id.product_price);
+        productId = (TextView) findViewById(R.id.productId);
+        seller_name = (TextView) findViewById(R.id.seller_name);
+        seller_phone = (TextView) findViewById(R.id.seller_phone);
+        seller_email = (TextView) findViewById(R.id.seller_email);
+        seller_block = (TextView) findViewById(R.id.seller_block);
+        seller_room = (TextView) findViewById(R.id.seller_room);
+        time_period = (TextView) findViewById(R.id.time_period);
+
 
         Album album = (Album) getIntent().getSerializableExtra("Album");
         Picasso.with(this).load(MainActivity.domain + album.getUrl()).into(imageView);

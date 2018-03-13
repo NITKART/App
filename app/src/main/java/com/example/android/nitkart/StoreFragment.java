@@ -145,7 +145,7 @@ public class StoreFragment extends Fragment {
                                 String url = product.getString("image");
                                 String name = product.getString("product_name");
                                 String price = product.getString("product_price");
-                                String id = product.getString("product_id");
+                                String id = product.getString("id");
                                 String s_name = product.getString("seller_name");
                                 String phone = product.getString("seller_phone");
                                 String email = product.getString("seller_email");
@@ -319,7 +319,7 @@ public class StoreFragment extends Fragment {
                                 String url = product.getString("image");
                                 String name = product.getString("product_name");
                                 String price = product.getString("product_price");
-                                String id = product.getString("product_id");
+                                String id = product.getString("id");
                                 String s_name = product.getString("seller_name");
                                 String phone = product.getString("seller_phone");
                                 String email = product.getString("seller_email");
