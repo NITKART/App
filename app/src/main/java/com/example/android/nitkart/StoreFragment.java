@@ -143,11 +143,25 @@ public class StoreFragment extends Fragment {
                                 // Get current json object
                                 JSONObject product = response.getJSONObject(i);
                                 String url = product.getString("image");
-                                String product_name = product.getString("product_name");
-                                String product_price = product.getString("product_price");
+                                String name = product.getString("product_name");
+                                String price = product.getString("product_price");
+                                String id = product.getString("product_id");
+                                String s_name = product.getString("seller_name");
+                                String phone = product.getString("seller_phone");
+                                String email = product.getString("seller_email");
+                                String block = product.getString("seller_block");
+                                String room = product.getString("seller_room");
+                                String time = product.getString("time_period");
                                 images.add(url);
-                                name.add(product_name);
-                                price.add(product_price);
+                                product_name.add(name);
+                                product_price.add(price);
+                                product_id.add(id);
+                                seller_name.add(s_name);
+                                seller_phone.add(phone);
+                                seller_email.add(email);
+                                seller_block.add(block);
+                                seller_room.add(room);
+                                time_period.add(time);
                             }
                             prepareAlbums();
 //                            Toast.makeText(context, response.toString(), Toast.LENGTH_LONG).show();
@@ -216,7 +230,7 @@ public class StoreFragment extends Fragment {
      */
     private void prepareAlbums() {
         for (int i = 0; i < images.size(); i++) {
-            Album a = new Album(name.get(i), price.get(i), images.get(i));
+            Album a = new Album(product_name.get(i), product_price.get(i), images.get(i), product_id.get(i), seller_name.get(i), seller_phone.get(i), seller_email.get(i), seller_block.get(i), seller_room.get(i), time_period.get(i));
             albumList.add(a);
         }
         adapter.notifyDataSetChanged();
@@ -273,8 +287,15 @@ public class StoreFragment extends Fragment {
 
         albumList = new ArrayList<>();
         images = new ArrayList<>();
-        name = new ArrayList<>();
-        price = new ArrayList<>();
+        product_name = new ArrayList<>();
+        product_price = new ArrayList<>();
+        product_id = new ArrayList<>();
+        seller_name = new ArrayList<>();
+        seller_phone = new ArrayList<>();
+        seller_email = new ArrayList<>();
+        seller_block = new ArrayList<>();
+        seller_room = new ArrayList<>();
+        time_period = new ArrayList<>();
         adapter = new AlbumsAdapter(getContext(), albumList);
 
 //        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -296,25 +317,37 @@ public class StoreFragment extends Fragment {
                                 // Get current json object
                                 JSONObject product = response.getJSONObject(i);
                                 String url = product.getString("image");
-                                String product_name = product.getString("product_name");
-                                String product_price = product.getString("product_price");
+                                String name = product.getString("product_name");
+                                String price = product.getString("product_price");
+                                String id = product.getString("product_id");
+                                String s_name = product.getString("seller_name");
+                                String phone = product.getString("seller_phone");
+                                String email = product.getString("seller_email");
+                                String block = product.getString("seller_block");
+                                String room = product.getString("seller_room");
+                                String time = product.getString("time_period");
                                 images.add(url);
-                                name.add(product_name);
-                                price.add(product_price);
+                                product_name.add(name);
+                                product_price.add(price);
+                                product_id.add(id);
+                                seller_name.add(s_name);
+                                seller_phone.add(phone);
+                                seller_email.add(email);
+                                seller_block.add(block);
+                                seller_room.add(room);
+                                time_period.add(time);
                             }
                             prepareAlbums();
 //                            Toast.makeText(context, response.toString(), Toast.LENGTH_LONG).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        swipeRefreshLayout.setRefreshing(false);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-
 //                        Intent intent = new Intent(getContext(), NoInternetActivity.class);
 //                        startActivity(intent);
                     }
