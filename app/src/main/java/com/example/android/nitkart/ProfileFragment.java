@@ -322,9 +322,12 @@ public class ProfileFragment extends Fragment {
     }
 
     private void signOut() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("IS_LOGGED", "0");
-        editor.apply();
+        SharedPreferences.Editor e = sharedPreferences.edit();
+        e.clear();
+        e.apply();
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("IS_LOGGED", "0");
+//        editor.apply();
         Login_Fragment.mGoogleSignInClient.signOut();
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
