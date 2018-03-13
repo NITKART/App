@@ -109,6 +109,10 @@ public class StoreFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_store, container, false);
         recyclerView = view.findViewById(R.id.recycler_view);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
+	swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
+	            android.R.color.holo_green_light, 
+	            android.R.color.holo_orange_light, 
+	            android.R.color.holo_red_light);
 
         albumList = new ArrayList<>();
         images = new ArrayList<>();
