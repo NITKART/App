@@ -34,7 +34,6 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             priceView = (TextView) view.findViewById(R.id.product_price);
             nameView = (TextView) view.findViewById(R.id.product_name);
-
             cardView = (CardView) itemView.findViewById(R.id.card_view);
         }
     }
@@ -58,8 +57,8 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
         String url = MainActivity.domain + album.getUrl();
         Log.v("This is the URL:", url);
         Picasso.with(mContext).load(url).into(thumbnail);
-        nameView.setText(album.getName());
-        priceView.setText(album.getPrice());
+        nameView.setText(album.getProduct_name());
+        priceView.setText(album.getProduct_price());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

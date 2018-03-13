@@ -73,8 +73,15 @@ public class ProfileFragment extends Fragment {
     CircleImageView userPhoto;
 
     ArrayList<String> images;
-    ArrayList<String> name;
-    ArrayList<String> price;
+    ArrayList<String> product_name;
+    ArrayList<String> product_price;
+    ArrayList<String> product_id;
+    ArrayList<String> seller_name;
+    ArrayList<String> seller_phone;
+    ArrayList<String> seller_email;
+    ArrayList<String> seller_block;
+    ArrayList<String> seller_room;
+    ArrayList<String> time_period;
     SharedPreferences sharedPreferences;
     String myPreferences = "MY_PREFERENCES";
     String emailId = "email_id";
@@ -123,8 +130,15 @@ public class ProfileFragment extends Fragment {
 
         albumList = new ArrayList<>();
         images = new ArrayList<>();
-        name = new ArrayList<>();
-        price = new ArrayList<>();
+        product_name = new ArrayList<>();
+        product_price = new ArrayList<>();
+        product_id = new ArrayList<>();
+        seller_name = new ArrayList<>();
+        seller_phone = new ArrayList<>();
+        seller_email = new ArrayList<>();
+        seller_block = new ArrayList<>();
+        seller_room = new ArrayList<>();
+        time_period = new ArrayList<>();
         adapter = new AlbumsAdapter(getContext(), albumList);
         userName=view.findViewById(R.id.userName);
         userEmail=view.findViewById(R.id.userEmail);
@@ -166,8 +180,15 @@ public class ProfileFragment extends Fragment {
                         for(Product post : posts)
                         {
                             images.add(post.getImage());
-                            name.add(post.getName());
-                            price.add(post.getPrice());
+                            product_name.add(post.getProduct_name());
+                            product_price.add(post.getProduct_price());
+                            product_id.add(post.getId());
+                            seller_name.add(post.getSeller_name());
+                            seller_phone.add(post.getSeller_phone());
+                            seller_email.add(post.getSeller_email());
+                            seller_block.add(post.getSeller_block());
+                            seller_room.add(post.getSeller_room());
+                            time_period.add(post.getTime_period());
                         }
                         prepareAlbums();
                     }
@@ -204,7 +225,7 @@ public class ProfileFragment extends Fragment {
     private void prepareAlbums() {
 
         for (int i = 0; i < images.size(); i++) {
-            Album a = new Album(name.get(i), price.get(i), images.get(i));
+            Album a = new Album(product_name.get(i), product_price.get(i), images.get(i), product_id.get(i), seller_name.get(i), seller_phone.get(i), seller_email.get(i), seller_block.get(i), seller_room.get(i), time_period.get(i));
             albumList.add(a);
         }
 
