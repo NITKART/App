@@ -57,8 +57,16 @@ public class StoreFragment extends Fragment {
     private AlbumsAdapter adapter;
     private List<Album> albumList;
     ArrayList<String> images;
-    ArrayList<String> name;
-    ArrayList<String> price;
+    ArrayList<String> product_name;
+    ArrayList<String> product_price;
+    ArrayList<String> product_id;
+    ArrayList<String> seller_name;
+    ArrayList<String> seller_phone;
+    ArrayList<String> seller_email;
+    ArrayList<String> seller_block;
+    ArrayList<String> seller_room;
+    ArrayList<String> time_period;
+
     SwipeRefreshLayout swipeRefreshLayout;
 
     public StoreFragment() {
@@ -104,8 +112,15 @@ public class StoreFragment extends Fragment {
 
         albumList = new ArrayList<>();
         images = new ArrayList<>();
-        name = new ArrayList<>();
-        price = new ArrayList<>();
+        product_name = new ArrayList<>();
+        product_price = new ArrayList<>();
+        product_id = new ArrayList<>();
+        seller_name = new ArrayList<>();
+        seller_phone = new ArrayList<>();
+        seller_email = new ArrayList<>();
+        seller_block = new ArrayList<>();
+        seller_room = new ArrayList<>();
+        time_period = new ArrayList<>();
         adapter = new AlbumsAdapter(getContext(), albumList);
 
 //        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -200,7 +215,6 @@ public class StoreFragment extends Fragment {
      * Adding few albums for testing
      */
     private void prepareAlbums() {
-
         for (int i = 0; i < images.size(); i++) {
             Album a = new Album(name.get(i), price.get(i), images.get(i));
             albumList.add(a);
