@@ -342,6 +342,7 @@ public class StoreFragment extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 },
                 new Response.ErrorListener() {
