@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class ProductDetails extends AppCompatActivity {
 
-    Button delete;
+//    Button delete;
     ImageView imageView;
     TextView producName, productPrice, productId, seller_name, seller_phone, seller_email, seller_block, seller_room, time_period;
     String prod_id;
@@ -48,7 +48,7 @@ public class ProductDetails extends AppCompatActivity {
         seller_room = (TextView) findViewById(R.id.seller_room);
         time_period = (TextView) findViewById(R.id.time_period);
 
-        delete = (Button) findViewById(R.id.delete);
+//        delete = (Button) findViewById(R.id.delete);
 
         Album album = (Album) getIntent().getSerializableExtra("Album");
         Picasso.with(this).load(MainActivity.domain + album.getUrl()).into(imageView);
@@ -64,37 +64,37 @@ public class ProductDetails extends AppCompatActivity {
 
         prod_id = album.getProduct_id();
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StringRequest stringRequest = new StringRequest(Request.Method.DELETE, MainActivity.domain + "/user/delete/",
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(ProductDetails.this, "Ad Deleted", Toast.LENGTH_SHORT).show();
-                                Log.d("Response", response);
-                                finish();
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                //this is causing an error
-//                            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
-                                Log.d("Error.Response", error.toString());
-                            }
-                        }
-                ) {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put("id", prod_id);
-                        return params;
-                    }
-                };
-                SingletonRequestQueue.getInstance(ProductDetails.this).addToRequestQueue(stringRequest);
-            }
-        });
+//        delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                StringRequest stringRequest = new StringRequest(Request.Method.DELETE, MainActivity.domain + "/user/delete/",
+//                        new Response.Listener<String>() {
+//                            @Override
+//                            public void onResponse(String response) {
+//                                Toast.makeText(ProductDetails.this, "Ad Deleted", Toast.LENGTH_SHORT).show();
+//                                Log.d("Response", response);
+//                                finish();
+//                            }
+//                        },
+//                        new Response.ErrorListener() {
+//                            @Override
+//                            public void onErrorResponse(VolleyError error) {
+//                                //this is causing an error
+////                            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+//                                Log.d("Error.Response", error.toString());
+//                            }
+//                        }
+//                ) {
+//                    @Override
+//                    protected Map<String, String> getParams() {
+//                        Map<String, String> params = new HashMap<String, String>();
+//                        params.put("id", prod_id);
+//                        return params;
+//                    }
+//                };
+//                SingletonRequestQueue.getInstance(ProductDetails.this).addToRequestQueue(stringRequest);
+//            }
+//        });
 
     }
 }

@@ -57,10 +57,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/time_period"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/delete"
-        android:text="Delete Ad"/>
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/delete"-->
+        <!--android:text="Delete Ad"/>-->
 
 </LinearLayout>
