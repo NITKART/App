@@ -52,17 +52,17 @@ public class ProductDetails extends AppCompatActivity {
 
         Album album = (Album) getIntent().getSerializableExtra("Album");
         Picasso.with(this).load(MainActivity.domain + album.getUrl()).into(imageView);
-        producName.setText(album.getProduct_name());
-        productPrice.setText(album.getProduct_price());
-        productId.setText(album.getProduct_id());
-        seller_name.setText(album.getSeller_name());
-        seller_phone.setText(album.getSeller_phone());
-        seller_email.setText(album.getSeller_email());
-        seller_block.setText(album.getSeller_block());
-        seller_room.setText(album.getSeller_room());
-        time_period.setText(album.getTime_period());
-
-        prod_id = album.getProduct_id();
+//        producName.setText(album.getProduct_name());
+//        productPrice.setText(album.getProduct_price());
+////        productId.setText(album.getProduct_id());
+//        seller_name.setText(album.getSeller_name());
+//        seller_phone.setText(album.getSeller_phone());
+//        seller_email.setText(album.getSeller_email());
+//        seller_block.setText(album.getSeller_block());
+//        seller_room.setText(album.getSeller_room());
+//        time_period.setText(album.getTime_period());
+//
+//        prod_id = album.getProduct_id();
 
 //        delete.setOnClickListener(new View.OnClickListener() {
 //            @Override

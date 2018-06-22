@@ -2,11 +2,21 @@ package com.example.android.nitkart;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by NISHANT on 12-06-2018.
@@ -34,22 +44,57 @@ public class MyProductDetails extends AppCompatActivity {
         seller_block = (TextView) findViewById(R.id.seller_block);
         seller_room = (TextView) findViewById(R.id.seller_room);
         time_period = (TextView) findViewById(R.id.time_period);
-
+        delete = (Button) findViewById(R.id.delete);
 //        delete = (Button) findViewById(R.id.delete);
 
         Album album = (Album) getIntent().getSerializableExtra("Album");
         Picasso.with(this).load(MainActivity.domain + album.getUrl()).into(imageView);
-        producName.setText(album.getProduct_name());
-        productPrice.setText(album.getProduct_price());
-        productId.setText(album.getProduct_id());
-        seller_name.setText(album.getSeller_name());
-        seller_phone.setText(album.getSeller_phone());
-        seller_email.setText(album.getSeller_email());
-        seller_block.setText(album.getSeller_block());
-        seller_room.setText(album.getSeller_room());
-        time_period.setText(album.getTime_period());
+//        producName.setText(album.getProduct_name());
+//        productPrice.setText(album.getProduct_price());
+//        //productId.setText(album.getProduct_id());
+//        seller_name.setText(album.getSeller_name());
+//        seller_phone.setText(album.getSeller_phone());
+//        seller_email.setText(album.getSeller_email());
+//        seller_block.setText(album.getSeller_block());
+//        seller_room.setText(album.getSeller_room());
+//        time_period.setText(album.getTime_period());
+//
+//        prod_id = album.getProduct_id();
 
-        prod_id = album.getProduct_id();
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringRequest stringRequest = new StringRequest(Request.Method.DELETE, MainActivity.domain + "/user/delete/",
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(MyProductDetails.this, "Ad Deleted", Toast.LENGTH_SHORT).show();
+                                Log.d("Response", response);
+                                finish();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //this is causing an error
+//                            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                                Log.d("Error.Response", error.toString());
+                            }
+                        }
+                ) {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("id", prod_id);
+                        return params;
+                    }
+                };
+                SingletonRequestQueue.getInstance(MyProductDetails.this).addToRequestQueue(stringRequest);
+            }
+        });
     }
+
+
 
 }
