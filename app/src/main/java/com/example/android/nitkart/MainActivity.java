@@ -9,7 +9,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private static FragmentManager fragmentManager;
     //DO NOT ADD A '/' AT THE END below
-    public static String domain = "http://192.168.43.106:8000";
+    public static String domain = "https://thawing-retreat-16540.herokuapp.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
